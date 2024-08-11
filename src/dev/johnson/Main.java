@@ -1,5 +1,7 @@
 package dev.johnson;
 
+import java.util.Arrays;
+
 interface Player {
     String name();
 }
@@ -14,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var philly = new Affiliation("city", "Philadelphia, PA", "US");
+        /*var philly = new Affiliation("city", "Philadelphia, PA", "US");
 
         BaseBallTeam phillies1 = new BaseBallTeam("Pliladelphia Phillies");
         BaseBallTeam astros1 = new BaseBallTeam("Houston Astros");
@@ -52,9 +54,41 @@ public class Main {
         var canberra = new Team<VolleyBallPlayer, Affiliation>("Canberra Heat");
         canberra.addTeamMember(new VolleyBallPlayer("B Black", "Opposite"));
         canberra.listTeamMembers();
-        scoreResult(canberra, 0, adelaine, 1);
+        scoreResult(canberra, 0, adelaine, 1);*/
 
         //Team<Integer> melbourneVB = new Team<>("Melbourne Vipers");
+
+        Integer five = 5;
+        Integer[] others = {0, 5, 10, -50, 50};
+
+        for(Integer i : others) {
+            int val = five.compareTo(i);
+            System.out.printf("%d %s %d: compareTo=%d%n", five,
+                    (val == 0 ? "==" : (val < 0 ) ? "< " : "> "), i, val);
+        }
+
+        String banana = "banana";
+        String[] fruits = {"apple", "banana", "orange", "BANANA"};
+        for(String fruit : fruits) {
+            int val = banana.compareTo(fruit);
+            System.out.printf("%s %s %s: compareTo=%d%n", banana,
+                    (val == 0 ? "==" : (val < 0 ) ? "< " : "> "), fruit, val);
+        }
+
+        Arrays.sort(fruits);
+        System.out.println(Arrays.toString(fruits));
+
+        System.out.println("A:"+(int)'A' + " " + "a:"+(int)'a');
+        System.out.println("B:"+(int)'B' + " " + "b:"+(int)'B');
+        System.out.println("O:"+(int)'O' + " " + "o:"+(int)'P');
+
+        Student tim = new Student("Tim");
+        Student [] students = { new Student("Tim"), new Student("Zach"), new Student("Ann") };
+
+        Arrays.sort(students);
+        System.out.println(Arrays.toString(students));
+
+        System.out.println("result = " + tim.compareTo("Mary"));
 
     }
 
@@ -74,5 +108,24 @@ public class Main {
         String message = team1.setScore(t1_score, t2_score);
         team2.setScore(t2_score, t1_score);
         System.out.printf("%s %s %s %n", team1, message, team2);
+    }
+}
+
+class Student implements Comparable{
+    String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Student student = (Student)o;
+        return name.compareTo(student.name);
     }
 }
